@@ -3,7 +3,7 @@ This is an automation Python project to send LinkedIn Connection Invites to my f
 
 Here we have imported the necessary libraries.
 
-import os, random, sys, time
+import os, random, sys, time<br>
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
