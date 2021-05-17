@@ -20,6 +20,24 @@ elementID.send_keys(password)
 elementID.submit()
 
 browser.get('https://www.linkedin.com/groups/12508395/members/')
+'''
+visitingProfileID = '/in/laxmimerit/'
+fullLink = 'https://www.linkedin.com' + visitingProfileID
+browser.get(fullLink)
+'''
+visitedProfiles = []
+profilesQueued = []
 
+def getNewProfileIDs(soup, profilesQueued):
+    profilesID = []
+    pav = soup.find('div', {'class': 'artdeco-typeahead ember-view groups-members-list'})
+    all_links = pav.findAll('a', {'class': 'ember-view ui-conditional-link-wrapper ui-entity-action-row__link'})
+    for link in all_links:
+        userID = link.get('href')
+        if((userID not in profilesQueued) and (userID not in visitedProfiles)):
+            profilesID.append(userID)
+    return profilesID
+
+getNewProfileIDs(BeautifulSoup(browser.page_source), profilesQueued)
 
 
