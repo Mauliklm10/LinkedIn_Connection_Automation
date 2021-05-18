@@ -1,5 +1,11 @@
 # LinkedIn_Connection_Automation
-This is an automation Python project to send LinkedIn Connection Invites to my fellow interns of the Cigna 2021 intern class in my LinkedIn Group
+This is an automation Python project to send LinkedIn Connection Invites to my fellow interns of the Cigna 2021 class in my LinkedIn Group
+
+We begin by installing selenium and beautifulsoup
+
+We use the webdriver of selenium to open a remote google chrome page for the automation process to take place within.
+
+Using beautifulsoup we webscrape all the usernames of the people in the LinkedIn group and store it within a list.
 
 Now for each link in profilesQueued we are going to perform the following actions:-
 
