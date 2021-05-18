@@ -13,10 +13,12 @@ Next, we will get the suggested profiles of the current profile using the functi
 Then we have just introduced a random delay so that LinkedIn doesn’t detect a bot.
 
 The constraints are as follows:
-2nd and no level connection people have a connection button on their profile page
-3rd connection level people do not have such a button, instead we have to click the 3 dots on their profile next to message and then choose the connect option.
+2nd and 3rd level connection people have a connection button on their profile page and its more or less in the same location or class so its alright
+No level connection people do not have such a button, instead we have to click the 3 dots on their profile next to message and then choose the connect option.
 
 If and else statement but dont know if we want them inside or outside the loop.
+
+We could make the if statements dependent on their connection level or make them dependent on their ability to find the connect buton and if they do not find the connect button they search of the 3 dots on the side of the profile and try connecting from there.
 ```
 while profilesQueued:
     try:
