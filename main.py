@@ -49,6 +49,8 @@ while profilesQueued:
         fullLink = 'https://www.linkedin.com' + visitingProfileID
         browser.get(fullLink)
 
+# an if statement here to find if the element exists on the profile
+
         browser.find_element_by_class_name('pv-s-profile-actions').click()
 
         browser.find_element_by_class_name('mr1').click()
@@ -58,6 +60,8 @@ while profilesQueued:
         elementID.send_keys(customMessage)
 
         browser.find_element_by_class_name('ml1').click()
+
+# Everything below here other than the Pause and except statement can be deleted
 
         # Add the ID to the visitedUsersFile
         with open('visitedUsers.txt', 'a') as visitedUsersFile:
@@ -71,7 +75,7 @@ while profilesQueued:
         except:
             print('Continue')
 
-
+        # The time taken for the process to run
         time.sleep(random.uniform(5, 15))
 
         if(len(visitedProfiles)%50==0):
