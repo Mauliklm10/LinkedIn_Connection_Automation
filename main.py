@@ -40,6 +40,50 @@ def getNewProfileIDs(soup, profilesQueued):
 
 getNewProfileIDs(BeautifulSoup(browser.page_source), profilesQueued)
 
-#yes
+profilesQueued = getNewProfileIDs(BeautifulSoup(browser.page_source), profilesQueued)
+
+while profilesQueued:
+    try:
+        visitingProfileID = profilesQueued.pop()
+        visitedProfiles.append(visitingProfileID)
+        fullLink = 'https://www.linkedin.com' + visitingProfileID
+        browser.get(fullLink)
+
+        browser.find_element_by_class_name('pv-s-profile-actions').click()
+
+        browser.find_element_by_class_name('mr1').click()
+
+        customMessage = "Hey, this is Maulik from your LinkedIn group for Cigna interns. Hopefully we can connect!"
+        elementID = browser.find_element_by_id('custom-message')
+        elementID.send_keys(customMessage)
+
+        browser.find_element_by_class_name('ml1').click()
+
+        # Add the ID to the visitedUsersFile
+        with open('visitedUsers.txt', 'a') as visitedUsersFile:
+            visitedUsersFile.write(str(visitingProfileID)+'\n')
+        visitedUsersFile.close()
+
+        # Get new profiles ID
+        soup = BeautifulSoup(browser.page_source)
+        try:
+            profilesQueued.extend(getNewProfileIDs(soup, profilesQueued))
+        except:
+            print('Continue')
+
+
+        time.sleep(random.uniform(5, 15))
+
+        if(len(visitedProfiles)%50==0):
+            print('Visited Profiles: ', len(visitedProfiles))
+
+        if(len(profilesQueued)>500):
+            with open('profilesQueued.txt', 'a') as visitedUsersFile:
+                visitedUsersFile.write(str(visitingProfileID)+'\n')
+            visitedUsersFile.close()
+            print('500 Done!!!')
+            break;
+    except:
+        print('error')
 
 
