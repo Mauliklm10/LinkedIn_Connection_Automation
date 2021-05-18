@@ -55,7 +55,7 @@ while profilesQueued:
 
         browser.find_element_by_class_name('mr1').click()
 
-        customMessage = "Hey, this is Maulik from your LinkedIn group for Cigna interns. Hopefully we can connect!"
+        customMessage = "Hello, this is Maulik from your LinkedIn group for the Cigna 2021 interns. Hopefully we can connect!"
         elementID = browser.find_element_by_id('custom-message')
         elementID.send_keys(customMessage)
 
