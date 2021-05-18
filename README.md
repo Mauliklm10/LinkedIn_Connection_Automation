@@ -25,48 +25,4 @@ No level connection people do not have such a button, instead we have to click t
 If and else statement but dont know if we want them inside or outside the loop.
 
 We could make the if statements dependent on their connection level or make them dependent on their ability to find the connect buton and if they do not find the connect button they search of the 3 dots on the side of the profile and try connecting from there.
-```
-while profilesQueued:
-    try:
-        visitingProfileID = profilesQueued.pop()
-        visitedProfiles.append(visitingProfileID)
-        fullLink = 'https://www.linkedin.com' + visitingProfileID
-        browser.get(fullLink)
-   
-        browser.find_element_by_class_name('pv-s-profile-actions').click()
 
-        browser.find_element_by_class_name('mr1').click()
-
-        customMessage = "Hello, I have found mutual interest area and I would be more than happy to connect with you. Kindly, accept my invitation. Thanks!"
-        elementID = browser.find_element_by_id('custom-message')
-        elementID.send_keys(customMessage)
-
-        browser.find_element_by_class_name('ml1').click()
-
-        # Add the ID to the visitedUsersFile
-        with open('visitedUsers.txt', 'a') as visitedUsersFile:
-            visitedUsersFile.write(str(visitingProfileID)+'\n')
-        visitedUsersFile.close()
-
-        # Get new profiles ID
-        soup = BeautifulSoup(browser.page_source)
-        try: 
-            profilesQueued.extend(getNewProfileIDs(soup, profilesQueued))
-        except:
-            print('Continue')
-
-        # Pause
-        time.sleep(random.uniform(3, 7)) # Otherwise, sleep to make sure everything loads
-
-        if(len(visitedProfiles)%50==0):
-            print('Visited Profiles: ', len(visitedProfiles))
-
-        if(len(profilesQueued)>100000):
-            with open('profilesQueued.txt', 'a') as visitedUsersFile:
-                visitedUsersFile.write(str(visitingProfileID)+'\n')
-            visitedUsersFile.close()
-            print('100,000 Done!!!')
-            break;
-    except:
-        print('error')
-```        
