@@ -61,32 +61,9 @@ while profilesQueued:
 
         browser.find_element_by_class_name('ml1').click()
 
-# Everything below here other than the Pause and except statement can be deleted
-
-        # Add the ID to the visitedUsersFile
-        with open('visitedUsers.txt', 'a') as visitedUsersFile:
-            visitedUsersFile.write(str(visitingProfileID)+'\n')
-        visitedUsersFile.close()
-
-        # Get new profiles ID
-        soup = BeautifulSoup(browser.page_source)
-        try:
-            profilesQueued.extend(getNewProfileIDs(soup, profilesQueued))
-        except:
-            print('Continue')
-
         # The time taken for the process to run
         time.sleep(random.uniform(5, 15))
 
-        if(len(visitedProfiles)%50==0):
-            print('Visited Profiles: ', len(visitedProfiles))
-
-        if(len(profilesQueued)>500):
-            with open('profilesQueued.txt', 'a') as visitedUsersFile:
-                visitedUsersFile.write(str(visitingProfileID)+'\n')
-            visitedUsersFile.close()
-            print('500 Done!!!')
-            break;
     except:
         print('error')
 
