@@ -62,7 +62,7 @@ while profilesQueued:
         browser.find_element_by_class_name('ml1').click()
 
         # The time taken for the process to run
-        time.sleep(random.uniform(5, 15))
+        time.sleep(5)
 
     except:
         print('error')
